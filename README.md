@@ -15,7 +15,7 @@ In addition to improving temperature and humidity measurements, testing and regr
 
 Accuracy of the air pressure readings is delivered through altitude compensation. The altitude is set by the ‘altitude’ parameter in the config.json file.
 
-Note: Even though the accuracy of the Enviro Monitor has been improved, the readings are still not thoroughly and accurately calibrated. The calibration exercise has been undertaken for temperatures between 0 and 40 degrees Celsius, so it's unlikely to provide effective readings outside of that range. They readings should therefore not be relied upon for critical applications.
+# Note: Even though the accuracy of the Enviro Monitor has been improved, the readings are still not thoroughly and accurately calibrated. The calibration exercise has been undertaken for temperatures between 0 and 40 degrees Celsius, so it's unlikely to provide effective readings outside of that range. They readings should therefore not be relied upon for critical applications.
 The case is not water resistant and needs to be sheltered from the elements. The base is only required if the unit is not mounted on a vertical surface. There is a variant of the case and cover for the Indoor Plus model that monitors eCO2 and TVOC levels. This variant of the case provides additional space and airflow for the SGP30 sensor.
 
 The case also has the option of adding a weather cover to provide additional protection from the elements. When using this cover, it is necessary to set "enable_display" in the config.json file to "false". That limits the display functionality to just air quality-based hue and serial number, as well as changing the temperature and humidity compensation variables to mitigate the effect of the cover on the temperature and humidity sensor.
@@ -32,7 +32,7 @@ The same Enviro+ setup is used to set up the Enviro Monitor and the config.json 
 
 Setting up of the noise level measurements requires the following additional steps:
 
-Additional Noise Measurement Setup
+# Additional Noise Measurement Setup
 Successful execution of this setup is necessary before enabling noise measurement in the config file.
 
 sudo apt-get update
@@ -91,10 +91,10 @@ Use alsamixer to set adau7002 capture level to 10
 
 A User Guide provides guidance on the use of the Enviro Monitor.
 
-Adafruit IO Support
+# Adafruit IO Support
 Support is provided for streaming weather forecast, air quality, temperature, humidity, air pressure, PM concentration, gas concentration, light levels, noise levels and, with the optional SGP30 sensor, eCO2 and TVOC data to Adafruit IO. This can be enabled and set up as follows:
 
-Config File Settings to Support Adafruit IO
+# Config File Settings to Support Adafruit IO
 The following fields in the Enviro Monitor’s config.json file need to be populated to supply data to the Adafruit IO feeds.
 
 "enable_adafruit_io": Set to true to enable and false to disable Adafruit IO feeds,
@@ -115,7 +115,7 @@ The following fields in the Enviro Monitor’s config.json file need to be popul
 
 You will need an Adafruit IO+ account in order to use ‘Premium Plus’, 'Premium Plus Noise', ‘Premium’ or 'Premium Noise' packages and an Enviro Monitor Indoor Plus (equipped with an SGP30 eCO2/TVOC sensor) for the ‘Premium Plus’ or 'Premium Plus Noise' packages (see Adafruit IO Packages)",
 
-Adafruit IO Feed, Dashboard and Block Setup
+# Adafruit IO Feed, Dashboard and Block Setup
 The script sets up the Enviro Monitor’s Adafruit IO feeds, dashboards and blocks like this example
 
 The script can set up multiple households and locations in one run, by populating the aio_feed_prefix dictionary with the required data. The format for aio_feed_prefix is:
@@ -138,20 +138,20 @@ aio_user_name = "Your Adafruit IO User Name"
 
 aio_key = "Your Adafruit IO Key"
 
-Adafruit IO Throttling Control
+# Adafruit IO Throttling Control
 If enabled, Adafruit IO feed updates are generated every 10 minutes. The config file's aio_feed_window and aio_feed_sequence variables are used to minimise Adafruit IO throttling errors when collecting feeds from multiple Enviro Monitors. The aio_feed_window variable can be a value between 0 and 9 to set the start time for a one minute feed update window. 0 opens the window at 0, 10, 20, 30, 40 and 50 minutes past the hour, 1 opens the window at 1, 11, 21, 31, 41, and 51 minutes past the hour, 2 opens the window at 2, 12, 22, 32, 42 and 52 minutes past the hour, and so on. The aio_feed_sequence variable can be a value between 0 and 3 to set the feed update start time within the one minute feed update window. 0 starts the feed update immediately after the window opens, 1 delays the start by 15 seconds, 2 by 30 seconds and 3 by 45 seconds.
 
-Adafruit IO Naming Convention
+# Adafruit IO Naming Convention
 The naming convention for each Enviro Monitor’s Adafruit IO feeds, dashboards or blocks, is to use the name of the household, followed by the location of the relevant Enviro Monitor’s location within that household, as a prefix for each feed, dashboard or block. You choose a suitable name for "aio_household_prefix", and "aio_location_prefix" can either be “indoor” or “outdoor”. For example, setting “aio_household_prefix" to “home” and "aio_location_prefix" to “outdoor” will set the prefix of each feed’s name as “Home Outdoor “ and the prefix of each feed’s key as “home-outdoor-“. So, the Temperature Feed will have the name “Home Outdoor Temperature” and the key “home-outdoor-temperature”. The dashboard will have the name “Home” and key “home” and the temperature gauge block within that dashboard will have the name “Outdoor Temperature Gauge” and the key “outdoor-temperature-gauge”.
 
-Adafruit IO Packages
+# Adafruit IO Packages
 Six Adafruit IO package options are available: "Premium" with 14 data feeds per Enviro, "Premium Noise" with 17 data feeds per Enviro, "Premium Plus" with 16 data feeds per Enviro (i.e. the addition of eCO2 and TVOC through the optional SGP30 sensor), "Premium Plus Noise" with 19 data feeds per Enviro which all need an Adafruit IO+ account; "Basic Air" with 5 air quality data streams (Air Quality Level, Air Quality Text, PM1, PM2.5 and PM10) and "Basic Combo" with 5 air quality/climate streams (Air Quality Level, Weather Forecast Icon, Temperature, Humidity and Air Pressure).
 
-Use of Adafruit IO Noise Packages
+# Use of Adafruit IO Noise Packages
 Using the "Premium Noise" and "Premium Plus Noise" Adafruit IO packages requires configuring and enabling Noise measurements in the Enviro, using the relevant setup instructions. Version 6.5 changes the noise feeds and dashboards to show Max, Min and Mean noise levels between feed updates, whereas prior versions only showed Max noise levels between feed updates.
 
-License
+# License
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
-Acknowledgements
+# Acknowledgements
 Weather Forecast based on www.worldstormcentral.co/law_of_storms/secret_law_of_storms.html by R. J. Ellis
