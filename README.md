@@ -1,5 +1,5 @@
 # Enviro-monitor
-This project uses a Raspberry Pi Zero W, a Pimoroni Enviro+ and a Plantower air quality sensor to monitor, display and report on air particles, gases, temperature, humidity, air pressure, light levels and noise levels. There is also the option to monitor eCO2 and TVOC levels by adding an SGP30 sensor. The code is based on many of the Python examples and libraries published by Pimoroni, with a range of modifications and enhancements.
+This project uses a Raspberry Pi Zero W to monitor, display and report on air particles, gases, temperature, humidity, air pressure, light levels and noise levels. There is also the option to monitor eCO2 and TVOC levels by adding an SGP30 sensor. The code is based on many of the Python examples and libraries published by Pimoroni, with a range of modifications and enhancements.
 
 A basic weather forecast function has been added, based on air pressure levels and changes.
 
