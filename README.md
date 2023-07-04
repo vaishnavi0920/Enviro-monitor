@@ -1,34 +1,34 @@
-# Enviro-monitor
-This project uses a Raspberry Pi Zero W to monitor, display and report on air particles, gases, temperature, humidity, air pressure, light levels and noise levels. There is also the option to monitor eCO2 and TVOC levels by adding an SGP30 sensor. The code is based on many of the Python examples and libraries published by Pimoroni, with a range of modifications and enhancements.
+# Nature-monitor
+This project utilizes a Raspberry Pi Zero W, to monitor, showcase, and report various aspects of the air, including particles, gases, temperature, humidity, air pressure, light levels, and noise levels. It offers the option to include an SGP30 sensor to monitor eCO2 and TVOC levels. The code is primarily based on Python examples and libraries provided by Pimoroni, with several modifications and improvements.
 
-A basic weather forecast function has been added, based on air pressure levels and changes.
+Additionally, a basic weather forecast feature has been incorporated, relying on air pressure levels and their fluctuations.
 
-The light level display in the superb Weather and Light has been changed to display air quality levels. The background hue now represents the air quality level and the sun’s position is now displayed via a visible sun icon. It also provides weather forecast information, noise levels (if enabled) and has some minor changes to the humidity indicator.
+The original light level display in the Weather and Light program has been altered to represent air quality levels instead. The background color now reflects the air quality level, and a visible sun icon indicates the sun's position. The program also offers weather forecast details, optional noise level monitoring, and minor adjustments to the humidity indicator.
 
-The Combined function has been modified to provide improved visibility of each graph. The graph colours are based on level thresholds for each parameter and it only displays parameters that have been measured. The ‘display_everything’ method has also been modified to only show air quality parameters, in order to improve readability of the display.
+The Combined function has undergone modifications to enhance the clarity of each graph. Graph colors are now determined by predefined thresholds for each parameter, and only the measured parameters are displayed. The 'display_everything' method has also been adjusted to focus solely on air quality parameters, improving the legibility of the display.
 
-The All in One function has been modified to allow cycling through the all of the Enviro Monitor’s functions.
+The All in One function has been altered to enable cycling through all of the Nature Monitor's functions.
 
-The accuracy of the temperature and humidity measurements has been improved by undertaking extensive testing and regression analysis (between 0 and 40 degrees Celsius) to develop more effective compensation algorithms. However on their own, even these improved algorithms did not provide sufficient accuracy and it was necessary to use a 3D-printed case to separate the Enviro+ from the Raspberry Pi Zero W and connect them via a ribbon cable.
+Extensive testing and regression analysis have been conducted to improve the accuracy of temperature and humidity measurements. This involved developing more effective compensation algorithms within the temperature range of 0 to 40 degrees Celsius. 
 
 In addition to improving temperature and humidity measurements, testing and regression analysis was undertaken to provide time-based drift, temperature, humidity and air pressure compensation for the Enviro+ gas sensors. Algorithms and clean-air calibration are also used to provide gas sensor readings in ppm. A data logging function is provided to support the regression analysis. The log file for that analysis needs to be enabled and converted to a valid json format before undertaking further regression analysis.
 
 Accuracy of the air pressure readings is delivered through altitude compensation. The altitude is set by the ‘altitude’ parameter in the config.json file.
 
-# Note: Even though the accuracy of the Enviro Monitor has been improved, the readings are still not thoroughly and accurately calibrated. The calibration exercise has been undertaken for temperatures between 0 and 40 degrees Celsius, so it's unlikely to provide effective readings outside of that range. They readings should therefore not be relied upon for critical applications.
+# Note: Even though the accuracy of the Nature Monitor has been improved, the readings are still not thoroughly and accurately calibrated. The calibration exercise has been undertaken for temperatures between 0 and 40 degrees Celsius, so it's unlikely to provide effective readings outside of that range. They readings should therefore not be relied upon for critical applications.
 The case is not water resistant and needs to be sheltered from the elements. The base is only required if the unit is not mounted on a vertical surface. There is a variant of the case and cover for the Indoor Plus model that monitors eCO2 and TVOC levels. This variant of the case provides additional space and airflow for the SGP30 sensor.
 
 The case also has the option of adding a weather cover to provide additional protection from the elements. When using this cover, it is necessary to set "enable_display" in the config.json file to "false". That limits the display functionality to just air quality-based hue and serial number, as well as changing the temperature and humidity compensation variables to mitigate the effect of the cover on the temperature and humidity sensor.
 
 Approximate noise levels measurements have been added to Version 6, based on this repository. This feature has not been calibrated and is not to be used for accurate sound level measurements. Version 6.7 has improved frequency compensation of the noise level measurement function, using this, but still further work and calibration is required. This noise level measurement function requires additional setup (described below) and after setup, needs to be enabled in the configuration file.
 
-mqtt support is provided to enable the use of external temperature and humidity sensors (for data logging and regression analysis), interworking between the Enviro Monitor and a home automation system and to support interworking between outdoor and indoor Enviro Monitors. That interworking allows the display of an indoor Enviro Monitor to cycle between indoor and outdoor readings.
+mqtt support is provided to enable the use of external temperature and humidity sensors (for data logging and regression analysis), interworking between the nature Monitor and a home automation system and to support interworking between outdoor and indoor Nature Monitors. That interworking allows the display of an indoor Enviro Monitor to cycle between indoor and outdoor readings.
 
-An alternative to using mqtt-linked indoor and outdoor Enviro Monitors to get outdoor readings on an indoor Enviro Monitor, is to configure the indoor Enviro Monitor to capture Luftdaten readings or Adafruit IO feeds from another Enviro Monitor.
+An alternative to using mqtt-linked indoor and outdoor Nature Monitors to get outdoor readings on an indoor Enviro Monitor, is to configure the indoor Nature Monitor to capture Luftdaten readings or Adafruit IO feeds from another Nature Monitor.
 
 Luftdaten interworking has been modified to support the addition of minimum, maximum and mean noise level readings. Noise level readings can be sent to Luftdaten by setting "enable_luftdaten_noise" to true in the config.json file. Note that Luftdaten can't currently be configured with three sensors per node, so noise level readings can therefore only be sent to Luftdaten if either PM or climate readings are disabled. That can be done by setting "disable_luftdaten_sensor_upload" in the config.json file to either "Climate" or "PM".
 
-The same Enviro+ setup is used to set up the Enviro Monitor and the config.json file parameters are used to customise its functionality. A description of the config.json file's parameters is here.
+The same Enviro+ setup is used to set up the Nature Monitor and the config.json file parameters are used to customise its functionality. A description of the config.json file's parameters is here.
 
 Setting up of the noise level measurements requires the following additional steps:
 
